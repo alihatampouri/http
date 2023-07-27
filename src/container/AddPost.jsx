@@ -19,11 +19,15 @@ const AddPost = () => {
     e.preventDefault();
 
     axios
-      .post("http://127.0.0.1/api/index.php", form)
+      .post("http://localhost/api/posts/", form)
       .then((response) => {
-        setShowAddPost(false);
-        setForm(formInit);
-        alert("Post Added.");
+        if (response.data.success) {
+          setShowAddPost(false);
+          setForm(formInit);
+          alert("Post Added.");
+        } else {
+          alert(response.data.data);
+        }
       })
       .catch((error) => console.log(error));
   };
