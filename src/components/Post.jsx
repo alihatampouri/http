@@ -6,7 +6,7 @@ const Post = ({ title, body, user, onClick }) => {
     >
       <h3 className="font-bold">{title}</h3>
       <p className="mt-4 mb-1 text-sm">{body.substr(0, 100) + "..."}</p>
-      <span className="text-gray-400 text-xs">author</span>
+      <span className="text-gray-400 text-xs capitalize">{user}</span>
     </div>
   );
 };

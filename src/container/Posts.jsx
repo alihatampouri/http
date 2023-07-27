@@ -7,8 +7,8 @@ const Posts = ({ onSelectPost }) => {
 
   useEffect(() => {
     axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then((respone) => setPosts(respone.data.slice(5, 11)))
+      .get("http://localhost/api/posts/")
+      .then((respone) => setPosts(respone.data))
       .catch((error) => console.log(error));
   }, []);
 
@@ -19,8 +19,9 @@ const Posts = ({ onSelectPost }) => {
           <Post
             key={p.id}
             title={p.title}
-            body={p.body}
-            user={p.userId}
+            body={p.content}
+            user={p.fullname}
+            date={p.created_at}
             onClick={() => onSelectPost(p.id)}
           />
         ))

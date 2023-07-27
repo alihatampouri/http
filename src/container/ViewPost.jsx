@@ -7,7 +7,7 @@ const ViewPost = ({ postId }) => {
   useEffect(() => {
     setPost(null);
     axios
-      .get(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+      .get(`http://127.0.0.1/api/posts/${postId}/`)
       .then((respone) => setPost(respone.data))
       .catch((error) => console.log(error));
   }, [postId]);
@@ -17,8 +17,10 @@ const ViewPost = ({ postId }) => {
       {post ? (
         <>
           <h1 className="font-bold">{post.title}</h1>
-          <p className="mt-4 mb-1 text-sm">{post.body}</p>
-          <span className="text-gray-400 text-xs">author</span>
+          <p className="mt-4 mb-1 text-sm">{post.content}</p>
+          <span className="text-gray-400 text-xs capitalize">
+            {post.fullname} - {post.created_at}
+          </span>
         </>
       ) : (
         <div className="animate-pulse text-gray-400">loading...</div>
