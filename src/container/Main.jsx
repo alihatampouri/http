@@ -3,6 +3,10 @@ import Posts from "./Posts";
 import ViewPost from "./ViewPost";
 import AddPost from "./AddPost";
 import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const Main = () => {
   const [selectedPost, setSelectedPost] = useState(null);
@@ -23,7 +27,11 @@ const Main = () => {
       .then((response) => {
           getPosts();
           setSelectedPost(null);
-          alert("Post Deleted.");
+          MySwal.fire({
+            icon: "success",
+            title: "Deleted",
+            text: "Post deleted successfully",
+          });
       })
       .catch((error) => console.log(error));
   };

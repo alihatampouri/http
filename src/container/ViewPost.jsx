@@ -1,5 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const ViewPost = ({ postId, onDelete }) => {
   const [post, setPost] = useState(null);
@@ -13,9 +17,18 @@ const ViewPost = ({ postId, onDelete }) => {
   }, [postId]);
 
   const onDeleteHandler = () => {
-    if (window.confirm("Are you sure you want to delete this post?")) {
-      onDelete(post.id);
-    }
+    MySwal.fire({
+      icon: "warning",
+      title: "Are you sure?",
+      text: "Are you sure you want to delete this post?",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Yes, delete",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onDelete(post.id);
+      }
+    });
   };
 
   return (

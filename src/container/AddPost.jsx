@@ -1,5 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const AddPost = ({ onAdd }) => {
   const [showAddPost, setShowAddPost] = useState(false);
@@ -25,9 +29,17 @@ const AddPost = ({ onAdd }) => {
           setShowAddPost(false);
           setForm(formInit);
           onAdd();
-          alert("Post Added.");
+          MySwal.fire({
+            icon: "success",
+            title: "Added",
+            text: "Post added successfully",
+          });
         } else {
-          alert(response.data.data);
+          MySwal.fire({
+            icon: "error",
+            title: "Error",
+            text: response.data.data,
+          });
         }
       })
       .catch((error) => console.log(error));
