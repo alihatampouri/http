@@ -1,17 +1,6 @@
-import axios from "axios";
 import Post from "../components/Post";
-import { useEffect, useState } from "react";
 
-const Posts = ({ onSelectPost }) => {
-  const [posts, setPosts] = useState(null);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost/api/posts/")
-      .then((respone) => setPosts(respone.data))
-      .catch((error) => console.log(error));
-  }, []);
-
+const Posts = ({ posts, onSelectPost }) => {
   return (
     <section className="grid grid-cols-3 gap-4 my-4">
       {posts ? (

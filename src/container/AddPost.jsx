@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const AddPost = () => {
+const AddPost = ({ onAdd }) => {
   const [showAddPost, setShowAddPost] = useState(false);
 
   const formInit = {
@@ -24,6 +24,7 @@ const AddPost = () => {
         if (response.data.success) {
           setShowAddPost(false);
           setForm(formInit);
+          onAdd();
           alert("Post Added.");
         } else {
           alert(response.data.data);
