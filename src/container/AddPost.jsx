@@ -23,7 +23,7 @@ const AddPost = ({ onAdd }) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost/api/posts/", form)
+      .post("/posts/", form)
       .then((response) => {
         if (response.data.success) {
           setShowAddPost(false);
@@ -58,8 +58,8 @@ const AddPost = ({ onAdd }) => {
 
   return (
     <section className="border rounded-md p-4">
-      <form action="post" className="flex gap-4" onSubmit={submitHandler}>
-        <div className="w-10/12">
+      <form action="post" className="md:flex gap-4" onSubmit={submitHandler}>
+        <div className="md:w-10/12">
           <input
             name="title"
             type="text"
@@ -75,7 +75,7 @@ const AddPost = ({ onAdd }) => {
           ></textarea>
         </div>
 
-        <div className="w-2/12">
+        <div className="md:w-2/12">
           <button
             className="bg-green-400/10 hover:bg-green-400/20 text-green-600 rounded-md px-2 py-1 mb-2 w-full transition-all"
             type="submit"

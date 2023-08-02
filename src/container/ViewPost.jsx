@@ -11,7 +11,7 @@ const ViewPost = ({ postId, onDelete }) => {
   useEffect(() => {
     setPost(null);
     axios
-      .get(`http://localhost/api/posts/${postId}/`)
+      .get(`/posts/${postId}/`)
       .then((respone) => setPost(respone.data))
       .catch((error) => console.log(error));
   }, [postId]);
@@ -32,7 +32,7 @@ const ViewPost = ({ postId, onDelete }) => {
   };
 
   return (
-    <section className="border rounded-md p-4">
+    <section className="border border-sky-600 rounded-md p-4">
       {post ? (
         <>
           <div className="flex justify-between">

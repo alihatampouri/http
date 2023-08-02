@@ -2,7 +2,7 @@ import Post from "../components/Post";
 
 const Posts = ({ posts, onSelectPost }) => {
   return (
-    <section className="grid grid-cols-3 gap-4 my-4">
+    <section className="grid md:grid-cols-3 gap-4 my-4">
       {posts ? (
         posts.map((p) => (
           <Post

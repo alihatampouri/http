@@ -16,22 +16,28 @@ const Main = () => {
 
   const getPosts = () => {
     axios
-      .get("http://localhost/api/posts/")
+      .get("/posts/")
       .then((respone) => setPosts(respone.data))
-      .catch((error) => console.log(error));
+      .catch((error) =>
+        MySwal.fire({
+          icon: "error",
+          title: "Error",
+          html: "An error occurred while receiving data<br>please check your internet connection",
+        })
+      );
   };
 
   const deletePostHandler = (id) => {
     axios
-      .delete(`http://localhost/api/posts/${id}/`)
+      .delete(`/posts/${id}/`)
       .then((response) => {
-          getPosts();
-          setSelectedPost(null);
-          MySwal.fire({
-            icon: "success",
-            title: "Deleted",
-            text: "Post deleted successfully",
-          });
+        getPosts();
+        setSelectedPost(null);
+        MySwal.fire({
+          icon: "success",
+          title: "Deleted",
+          text: "Post deleted successfully",
+        });
       })
       .catch((error) => console.log(error));
   };
